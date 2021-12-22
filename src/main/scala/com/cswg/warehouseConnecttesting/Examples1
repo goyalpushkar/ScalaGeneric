@@ -1,0 +1,114 @@
+println("Hello, world!")
+
+2+1
+
+res3 * 4
+
+val msg = "Hello World"
+
+val msg = "Hello World Again!"
+
+println(msg)
+
+msg = "Good Bye World!"
+
+val msg: java.lang.String = "Hello World with Type"
+
+def max(x: Int, y: Int): Int = { if (x > y ) x else y }
+
+max(3,7)
+
+def greet() = "Hello world"
+
+greet()
+
+println(greet())
+
+def greetname(name: String) = { println("Hello! " + name) }
+
+greetname("Pushkar Goyal")
+
+
+def formatArgs( args: Array[String]) = args.mkString(" \n")
+var i = 0
+while( i < args.length){
+   if ( i != 0 )
+      print(" ")
+   print( args(i) )
+   i += 1 
+}
+
+print()
+
+def f(): Unit = "this string is lost"
+
+f
+
+def h() = { "this String gets returned!" }
+
+h
+
+val Example2Test = new Examples2();
+Example2Test.main("FileName.sc");
+
+import ChecksumAccumulator.calculate
+ChecksumAccumulator.calculate("Every Value is an object")
+
+Summer$.main("of Love")
+
+val B\u0041\u0044 = 1
+
+val doubleQuote = '\"'
+
+val escapes = "\\\"\'"
+
+println("""Welcome to Ultamix 3000.
+           |Type "HELP" for help.""")
+
+println("""|Welcome to Ultamix 3000.
+             |Type "HELP" for help.""".stripMargin)   
+             
+11f / 4f
+
+11 % 4
+
+Math.IEEEremainder(11 , 4)
+
+Math.IEEEdivision(11 , 4)
+
+val oneHalf = new Rational(1, 2) 
+
+val r = new Rational(5, 3)
+val t = new Rational(6, 7)
+r + t
+r * t
+
+val r = new Summer
+r.main(Array("sum","calculate"))
+
+implicit def intToRational(x: Int) = new Rational(x)
+2 * r
+
+
+val x = List.range(1,10)
+
+val evens = x.filter(_%2 == 0 )
+
+val list = "apple" :: "banana" :: 1 :: 2 :: Nil
+
+val strings = list.filter{ case _: Integer => true case _=> false }
+
+val y = List(15,10,5,8,20,12)
+
+val z = y.groupBy(_ > 10)
+val z1 = y.partition(_ > 10)
+val z2 = y.span(_ < 20)
+val z3 = y.splitAt(2)
+
+val couples = List( ("Kim", "Al"), ("Julia","Terry"), ("Shinaya", "Gore") )
+
+val (women, men) = couples.unzip
+
+val prices = Array(4)
+
+val productWithPrices = products.zip(prices)

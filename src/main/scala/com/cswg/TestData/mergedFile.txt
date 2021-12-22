@@ -1,0 +1,8 @@
+1001, Pushkar, Goyal,2
+1004, Ankush, Arora,6
+1007, Aneet, Bansal,7
+1006, Lotia, Garg,4
+1003, Aman, Gupta,3
+1005, Akash, Singla,2
+1008, Sunny, Grover,8
+1002, Arpit, Narula,1
