@@ -1,0 +1,22 @@
+{
+   "local": {
+	    "db_path":"bolt://127.0.0.1:7687"
+		,"username":"neo4j"
+		,"password":"graphs@21"
+	}
+   ,"dev": {
+	    "db_path":"bolt://neo4j.cswg.com"
+		,"username":"pgoyal"
+		,"password":"welcome123"
+	}
+   ,"uat": {
+	    "db_path":"bolt://neo4j.cswg.com:7488"
+		,"username":"pgoyal"
+		,"password":"Welcome1"
+   }
+   ,"prod": {
+	    "db_path":"bolt://neo4j.cswg.com:7488"
+		,"username":"pgoyal"
+		,"password":"Welcome1"
+   }
+}

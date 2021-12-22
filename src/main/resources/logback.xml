@@ -1,76 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
 
-	<!--  <property name="DEV_HOME" value="C:/Logs" /> --> 
-	<property name="DEV_HOME" value="/opt/cassanra/applicationstack/applications/wip/log" />	
-    <timestamp key="timeFormat" datePattern="yyyyMMddHHmmss" />
-
+    <property name="DEV_HOME" value="/opt/cassandra/default/logs/Neo4JStreaming" /> 
+    
 	<appender name="FILE_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
-         <file>${DEV_HOME}/M0001_Practice${timeFormat}.log</file>
-         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-                 <Pattern>
-                         %d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n
-                 </Pattern>
-         </encoder>
-         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-                 <!-- rollover daily -->
-                 <fileNamePattern>${DEV_HOME}/archived/M0001_Practice%d{yyyy-MM-dd}.%i.log</fileNamePattern>
-                 <!-- <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">  -->
-                 <!-- each file should be at most 100MB, keep 10 days worth of history, but at most 20GB -->
-                 <timeBasedFileNamingAndTriggeringPolicy
-					class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
-					<maxFileSize>10MB</maxFileSize>
-				 </timeBasedFileNamingAndTriggeringPolicy>
-                 <!-- </timeBasedFileNamingAndTriggeringPolicy>  -->
-         </rollingPolicy>
+		<file>${DEV_HOME}/Neo4JStreaming_%d{yyyy-MM-dd}.log</file>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<Pattern>
+				%d{yyyy-MM-dd HH:mm:ss} - %msg%n
+			</Pattern>
+		</encoder>
+
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- rollover daily -->
+			<fileNamePattern>${DEV_HOME}/archived/debug.%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>10MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+
+	</appender>
+	
+	<appender name="EMAIL_LOG" class="ch.qos.logback.classic.net.SMTPAppender">
+	   <smtpHost>smtp-relay.cswg.com</smtpHost>
+	   <to>pgoyal@cswg.com</to>
+	   <from>pgoyal@cswg.com</from>
+	   <subject>${HOSTNAME} : Spark Job Failure Alert </subject>
+	   <filter class="ch.qos.logback.classic.filter.LevelFilter">
+		  <level>ERROR</level>
+		  <onMatch>ACCEPT</onMatch>
+		  <onMismatch>DENY</onMismatch>
+        </filter>	   
+		<layout class="ch.qos.logback.classic.html.HTMLLayout">
+			  <pattern>%d%mdc%level%logger{36}%msg</pattern>
+		</layout>
     </appender>
-		
+
 	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
 		<encoder>
 			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n
 			</pattern>
 		</encoder>
 	</appender>
-     
-	<appender name="EMAIL_LOG" class="ch.qos.logback.classic.net.SMTPAppender">
-           <smtpHost>smtp-relay.cswg.com</smtpHost>
-           <to>pgoyal@cswg.com</to>
-           <from>pgoyal@cswg.com</from>
-           <subject>${HOSTNAME} :File Processing failure</subject>
-           <filter class="ch.qos.logback.classic.filter.LevelFilter">
-                  <level>ERROR</level>
-                  <onMatch>ACCEPT</onMatch>
-                  <onMismatch>DENY</onMismatch>
-        </filter>
-                <layout class="ch.qos.logback.classic.html.HTMLLayout">
-                          <pattern>%d%mdc%level%logger{36}%msg</pattern>
-                </layout>
-    </appender>
-            	
-	<logger name="com.cswg" level="error" additivity="false">
-	    <appender-ref ref="EMAIL_LOG" />
-		<appender-ref ref="FILE_LOG" />  
-	    <appender-ref ref="STDOUT" />   
-	</logger>
-	
-	<logger name="com.cswg" level="debug" additivity="false">
-		<appender-ref ref="FILE_LOG" />  
-	    <appender-ref ref="STDOUT" />   
-	</logger>	
-	
-	<logger name="com.cswg.practice" level="ERROR" additivity="false">
-	    <appender-ref ref="EMAIL_LOG" />
-		<appender-ref ref="FILE_LOG" />  
-	    <appender-ref ref="STDOUT" /> 
-     </logger>
-     <logger name="com.cswg.practice" level="DEBUG" additivity="false">
-           <appender-ref ref="FILE_LOG" />	 
-	       <appender-ref ref="STDOUT" />
-     </logger>
 
-	<root level="error">
-		<appender-ref ref="FILE_LOG" /> 
-		<appender-ref ref="STDOUT" />  
-	</root>
-
+      <logger name="com.cswg.wip.neo4j.etl" level="info" additivity="false">
+	    <appender-ref ref="FILE_LOG" />  
+		<appender-ref ref="STDOUT" />
+	   </logger>
+    
+       <logger name="com.cswg.wip.neo4j.etl" level="error" additivity="false">
+	    <appender-ref ref="FILE_LOG" />  
+		<appender-ref ref="STDOUT" />
+       </logger> 
+       <logger name="com.cswg.wip.neo4j.etl" level="debug" additivity="false">
+         <appender-ref ref="FILE_LOG" />
+         <appender-ref ref="STDOUT" />
+       </logger>
+       <root level="OFF">
+            <appender-ref ref="FILE_LOG" />
+       </root>
+	
 </configuration>
