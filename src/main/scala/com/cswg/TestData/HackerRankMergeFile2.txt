@@ -1,3 +1,0 @@
-1001, Pushkar, Goyal, 2
-1004, Ankush, Arora, 6
-1008, Sunny, Grover, 8
